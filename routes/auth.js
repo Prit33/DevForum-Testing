@@ -19,6 +19,7 @@ router.post("/register",async(req,res)=>{
         const hashedPassword=await bcrypt.hashSync(password,salt)
         const newUser=new User({username,email,password:hashedPassword})
         const savedUser=await newUser.save()
+        console.log(savedUser);
         res.status(200).json(savedUser)
 
     }
@@ -46,7 +47,7 @@ router.post("/login",async (req,res)=>{
         const {password,...info}=user._doc      // separating password and other info (storing all info in "info" except password)
         // console.log(token)        
         
-        res.cookie("token",token).status(200).json(info)            // this is token (jwt)
+        res.status(200).json({info,token: token})            // this is token (jwt)
         // res.json({token,userId: user._id})
         // res.status(200).json(user);
 
