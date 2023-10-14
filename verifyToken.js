@@ -4,6 +4,7 @@ const verifyToken=(req,res,next)=>{
     // console.log(req.cookies.access_token)
 
     const token=req.cookies.token
+    // console.log(req.cookies.token)
     if(!token){
         return res.status(401).json("You are not authenticated!")
     }
