@@ -1,10 +1,9 @@
 const jwt=require('jsonwebtoken')
 
 const verifyToken=(req,res,next)=>{
-    // console.log(req.cookies.access_token)
-
+    console.log(req.cookies)
     const token=req.cookies.token
-    console.log(req.cookies.token)
+    // console.log(req.headers.authorization)
     if(!token){
         return res.status(401).json("You are not authenticated!")
     }
@@ -12,6 +11,7 @@ const verifyToken=(req,res,next)=>{
         if(err){
             return res.status(403).json("Token is not valid!")
         }
+        // console.log(data);
         req.userId=data._id
         // console.log(req.usedId);
        
