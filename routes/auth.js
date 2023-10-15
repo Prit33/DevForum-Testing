@@ -73,7 +73,7 @@ router.get("/logout",async (req,res)=>{
 //REFETCH USER      to avoid automatically logout after refreshing the page
 router.get("/refetch", (req,res)=>{
     const token=req.cookies.token
-    // console.log(token);
+    // console.log(req.cookies.token);
     jwt.verify(token,process.env.SECRET,{},async (err,data)=>{
         // console.log("refetch called")
         if(err){
