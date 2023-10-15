@@ -29,6 +29,7 @@ router.post("/register",async(req,res)=>{
 
 })
 
+let refetchInfo={},refetchToken;
 
 //LOGIN         need email and password 
 router.post("/login",async (req,res)=>{
@@ -45,9 +46,12 @@ router.post("/login",async (req,res)=>{
         }
         const token=jwt.sign({_id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"3d"})    // for 3 days, jwt token will be there
         const {password,...info}=user._doc      // separating password and other info (storing all info in "info" except password)
-        // console.log(token)        
-        
-        res.status(200).json({info,token: token})            // this is token (jwt)
+
+        refetchToken=token;
+        refetchInfo=info;
+        info.token=token;
+        // console.log(info);
+        res.status(200).json(info)            // this is token (jwt)
         // res.json({token,userId: user._id})
         // res.status(200).json(user);
 
@@ -76,6 +80,10 @@ router.get("/refetch", (req,res)=>{
     // console.log(req.cookies.token);
     jwt.verify(token,process.env.SECRET,{},async (err,data)=>{
         // console.log("refetch called")
+        // console.log("verified data",data);
+        console.log(data);
+        
+        // console.log(transformData);
         if(err){
             return res.status(404).json(err)
         }
