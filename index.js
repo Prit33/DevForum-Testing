@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const cors = require('cors');
 const multer = require('multer')
 const path = require('path')
+const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser')
 const authRoute = require('./routes/auth')
@@ -26,11 +27,15 @@ const connectDB = async () => {
 
 // middlewares
 dotenv.config();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use((req, res, next) => {
     res.setHeader(
         "Access-Control-Allow-Origin",
         "http://localhost:5173/"
     );
+    
     res.setHeader(
         "Access-Control-Allow-Methods",
         "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
