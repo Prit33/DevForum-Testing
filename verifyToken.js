@@ -5,7 +5,7 @@ const verifyToken=(req,res,next)=>{
     // console.log(req.cookies.token)
     
     const token=req.cookies.token;      
-    const tokenValue = req.headers.cookie.split('=')[1];    // doing another way bcoz of deployment problem
+    const tokenValue = req.headers.cookie.split("=")[1];    // doing another way bcoz of deployment problem
     console.log(tokenValue);
 
 
