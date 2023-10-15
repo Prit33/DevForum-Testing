@@ -62,8 +62,8 @@ app.use((req, res, next) => {
 });
 app.use(express.json())
 app.use(cookieParser())
-// app.use(cors({ origin: "http://localhost:5173/", credentials: true }))
-app.use(cors());
+app.use(cors({ origin: "https://dev-forum-eosin.vercel.app/", credentials: true }))
+// app.use(cors());
 
 // app.use(cors())
 
