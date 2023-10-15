@@ -8,7 +8,8 @@ app.use(cookies());
 const verifyToken=(req,res,next)=>{
     // console.log(req.cookies.token)
     
-    const token=req.cookies.token;      
+    // const token=req.cookies.token;  
+    const token=req.headers.authorization;  
     // const tokenValue = req.headers.cookie.split("=")[1];    // doing another way bcoz of deployment problem
     console.log(token);
 
