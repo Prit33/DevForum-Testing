@@ -62,7 +62,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({ origin: "https://dev-forum-d89af16a2-prit33.vercel.app/", credentials: true }))
+app.use(cors({ origin: "https://dev-forum-d89af16a2-prit33.vercel.app", credentials: true }))
 // app.use(cors());
 
 // app.use(cors())
